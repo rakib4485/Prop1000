@@ -144,6 +144,14 @@ if (fs.existsSync(dist)) {
   app.get('*', (req, res) => res.sendFile(path.join(dist, 'index.html')));
 }
 
+app.get('/', (req, res) => {
+  res.status(200).json({ message: 'Welcome to the API' });
+});
+
+app.get('/*', (req, res) => {
+  res.status(404).json({ error: 'Not found' });
+});
+
 await mongoose.connect(MONGODB_URI);
 console.log('MongoDB connected');
 app.listen(PORT, () => console.log(`Server on http://localhost:${PORT}`));
