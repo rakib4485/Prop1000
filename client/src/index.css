@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@theme {
+  --color-night: #150a22;
+  --color-night2: #1e0f31;
+  --color-card: #2a1644;
+  --color-line: #43285f;
+  --color-ink: #1a0d2b;
+  --color-cream: #f4ecff;
+  --color-mute: #b9a6d3;
+  --color-gold: #e6b34a;
+  --color-gold2: #f6d58a;
+  --color-aqua: #1b8f8a;
+  --color-aqua2: #5fd6cf;
+  --color-bad: #ff8f80;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-serif: "Fraunces", Georgia, serif;
+  --animate-grow: grow 1.1s ease-out both;
+  @keyframes grow {
+    from { transform: scaleX(0); }
+  }
+}
+
+@layer base {
+  html { scroll-padding-top: 72px; color-scheme: dark; }
+  body {
+    @apply bg-night text-cream font-sans antialiased overflow-x-hidden;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  h1, h2, h3 { @apply font-serif leading-[1.12]; }
+  :focus-visible { outline: 2px solid var(--color-gold2); outline-offset: 3px; }
+}
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-[1120px] px-[18px] sm:px-6; }
+  .btn {
+    @apply inline-block cursor-pointer rounded-lg bg-gold px-6 py-3 text-center text-[15px] font-semibold text-ink
+      transition hover:-translate-y-0.5 hover:bg-gold2 disabled:cursor-wait disabled:opacity-60 motion-reduce:transition-none;
+  }
+  .btn-sm { @apply px-4 py-2 text-sm; }
+  .btn-ghost { @apply border border-line bg-transparent text-cream hover:bg-card; }
+  .btn-danger { @apply border border-bad bg-transparent text-bad hover:bg-transparent; }
+  .field { @apply w-full rounded-lg border border-line bg-night px-3.5 py-3 text-[15px] text-cream; }
+  .panel { @apply mb-5 rounded-2xl border border-line bg-night2 p-5 sm:p-6; }
+  .sec-title { @apply text-[clamp(28px,3.8vw,44px)]; }
+}
