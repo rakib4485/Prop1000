@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { money, num, scrollToId } from '../lib/utils.js';
+import { WAITLIST_URL } from '../lib/defaults.js';
+import Logo from './Logo.jsx';
 
 const SECTION = 'py-[60px] md:py-[88px]';
 
@@ -68,7 +70,9 @@ function PoolCard({ accent, title, image, badge, big, bigLabel, rows, desc, ghos
         ))}
       </ul>
       <p className="mb-[22px] text-[15px] text-mute">{desc}</p>
-      <button className={`btn ${ghost ? 'btn-ghost' : ''}`} onClick={() => scrollToId('waitlist')}>Join the waitlist</button>
+      <button className={`btn ${ghost ? 'btn-ghost' : ''}`} onClick={() => window.open(WAITLIST_URL, '_blank')}>
+        Join the waitlist
+      </button>
     </article>
   );
 }
@@ -77,15 +81,15 @@ export function Pools({ c }) {
   return (
     <section id="pools" className={`${SECTION} bg-night2`}>
       <div className="wrap">
-        <Heading title="Two pools, two ways to grow your money" sub={`Choose the one that fits your timeline and income goals. Both start at ${money(c.min)}.`} />
+        <Heading title="Two pools, two ways to grow your money" sub={`Choose the one that fits your timeline and income goals. Invest ${money(c.min)} to ${money(c.max)} in each pool.`} />
         <div className="grid gap-6 md:grid-cols-2">
           <PoolCard
             accent="gold" title={c.poolA.name} image={c.poolA.image} badge={c.poolA.duration} big={`${c.poolA.target}%+`} bigLabel="Target profit on exit" desc={c.poolA.desc}
-            rows={[['Duration', c.poolA.duration], ['Return type', 'Profit on exit'], ['Minimum', money(c.min)]]}
+            rows={[['Duration', c.poolA.duration], ['Return type', 'Profit on exit'], ['Minimum', money(c.min)], ['Maximum', money(c.max)]]}
           />
           <PoolCard
             ghost accent="aqua" title={c.poolB.name} image={c.poolB.image} badge={c.poolB.duration} big={`${c.poolB.yLow}–${c.poolB.yHigh}%`} bigLabel="Target annual rental yield" desc={c.poolB.desc}
-            rows={[['Duration', c.poolB.duration], ['Return type', 'Annual rental yield'], ['Minimum', money(c.min)]]}
+            rows={[['Duration', c.poolB.duration], ['Return type', 'Annual rental yield'], ['Minimum', money(c.min)], ['Maximum', money(c.max)]]}
           />
         </div>
         <p className="mt-3.5 text-[12.5px] text-mute">Returns are targets, not guarantees. Your capital is at risk.</p>
@@ -188,7 +192,7 @@ export function Footer({ c }) {
   return (
     <footer className="border-t border-line bg-[#06080b] py-10 text-[13px] text-mute">
       <div className="wrap grid gap-3">
-        <div className="font-serif text-[22px] font-bold text-cream">PROP<span className="gold-text">1000</span></div>
+        <Logo/>
         <div>
           <strong className="text-cream">Risk warning.</strong> Returns are targets, not guarantees. Your capital is at risk and property
           values and rental income can go down as well as up. Yield figures are gross and for illustration. This page is not financial advice.

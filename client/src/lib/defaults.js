@@ -7,6 +7,7 @@ export const DEFAULTS = {
     lead: 'Fractional real estate investing, open to people anywhere in the world. Pick a pool, invest your share, and earn as the property performs.',
   },
   min: 1000,
+  max: 183000,
   email: 'eakubarabe9725@gmail.com',
   waitlistOpen: true,
   poolA: {
@@ -41,3 +42,4 @@ export const DEFAULTS = {
 
 export const STATUSES = ['New', 'Contacted', 'Approved', 'Rejected'];
 export const POOL_OPTIONS = ['Both pools', 'Pool A', 'Pool B'];
+export const WAITLIST_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdAZG7H5rcjTOPgf8oRfwF2t5xXEZvyS7QPSE8kcZZYo8yUfQ/viewform?usp=header';

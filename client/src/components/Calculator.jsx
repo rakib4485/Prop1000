@@ -3,7 +3,7 @@ import { money } from '../lib/utils.js';
 
 export default function Calculator({ c }) {
   const [pool, setPool] = useState('A');
-  const [amt, setAmt] = useState(Math.max(10000, c.min));
+  const [amt, setAmt] = useState(Math.min(c.max, Math.max(10000, c.min)));
   const [yrs, setYrs] = useState(3);
   const isA = pool === 'A';
 
@@ -27,7 +27,7 @@ export default function Calculator({ c }) {
             </label>
             <input
               id="amt" type="range" className="w-full accent-gold"
-              min={c.min} max={Math.max(100000, c.min * 10)} step={c.min}
+              min={c.min} max={c.max} step={c.min}
               value={amt} onChange={(e) => setAmt(+e.target.value)}
             />
             {!isA && (

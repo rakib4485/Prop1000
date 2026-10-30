@@ -37,7 +37,7 @@
 }
 
 @layer components {
-  .wrap { @apply mx-auto w-full max-w-[1120px] px-[18px] sm:px-6; }
+  .wrap { @apply mx-auto w-full max-w-[1440px] px-[18px] sm:px-6; }
   .gold-text {
     background: linear-gradient(135deg, #fff0b8 0%, #d4af37 50%, #9a7b1c 100%);
     -webkit-background-clip: text;

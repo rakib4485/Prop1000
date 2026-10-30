@@ -2,6 +2,7 @@ import { useState } from "react";
 import { addLead } from "../lib/store.js";
 import { POOL_OPTIONS } from "../lib/defaults.js";
 import { isEmail, money } from "../lib/utils.js";
+import { WAITLIST_URL } from '../lib/defaults.js';
 
 export default function JoinForm({ c }) {
   const [form, setForm] = useState({
@@ -82,52 +83,66 @@ export default function JoinForm({ c }) {
               </p>
             </div>
           ) : (
-            <form onSubmit={submit} noValidate className="grid gap-3">
-              <input
-                className="field"
-                type="text"
-                placeholder="Full name"
-                aria-label="Full name"
-                autoComplete="name"
-                value={form.name}
-                onChange={set("name")}
-              />
-              <input
-                className="field"
-                type="email"
-                placeholder="Email address"
-                aria-label="Email address"
-                autoComplete="email"
-                value={form.email}
-                onChange={set("email")}
-              />
-              <select
-                className="field"
-                aria-label="Pool of interest"
-                value={form.pool}
-                onChange={set("pool")}
+            // <form onSubmit={submit} noValidate className="grid gap-3">
+            //   <input
+            //     className="field"
+            //     type="text"
+            //     placeholder="Full name"
+            //     aria-label="Full name"
+            //     autoComplete="name"
+            //     value={form.name}
+            //     onChange={set("name")}
+            //   />
+            //   <input
+            //     className="field"
+            //     type="email"
+            //     placeholder="Email address"
+            //     aria-label="Email address"
+            //     autoComplete="email"
+            //     value={form.email}
+            //     onChange={set("email")}
+            //   />
+            //   <select
+            //     className="field"
+            //     aria-label="Pool of interest"
+            //     value={form.pool}
+            //     onChange={set("pool")}
+            //   >
+            //     {POOL_OPTIONS.map((o) => (
+            //       <option key={o}>{o}</option>
+            //     ))}
+            //   </select>
+            //   <textarea
+            //     className="field min-h-20 resize-y"
+            //     placeholder="Anything you'd like us to know (optional)"
+            //     aria-label="Note"
+            //     value={form.note}
+            //     onChange={set("note")}
+            //   />
+            //   {error && (
+            //     <div className="text-sm text-bad" role="alert">
+            //       {error}
+            //     </div>
+            //   )}
+            //   <button className="btn btn-amber" type="submit" disabled={busy}>
+            //     <span>{busy ? "Saving…" : "Join the exclusive waitlist"}</span>
+            //     <span aria-hidden="true">→</span>
+            //   </button>
+            // </form>
+            <div className="grid gap-3">
+              <p className="text-mute">
+                Fill in a short Google Form and we'll add you to the list.
+              </p>
+              <a
+                className="btn btn-amber"
+                href={WAITLIST_URL}
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                {POOL_OPTIONS.map((o) => (
-                  <option key={o}>{o}</option>
-                ))}
-              </select>
-              <textarea
-                className="field min-h-20 resize-y"
-                placeholder="Anything you'd like us to know (optional)"
-                aria-label="Note"
-                value={form.note}
-                onChange={set("note")}
-              />
-              {error && (
-                <div className="text-sm text-bad" role="alert">
-                  {error}
-                </div>
-              )}
-              <button className="btn btn-amber" type="submit" disabled={busy}>
-                <span>{busy ? "Saving…" : "Join the exclusive waitlist"}</span>
+                <span>Join the exclusive waitlist</span>
                 <span aria-hidden="true">→</span>
-              </button>
-            </form>
+              </a>
+            </div>
           )}
         </div>
       </div>

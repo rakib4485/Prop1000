@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { scrollToId } from '../lib/utils.js';
+import { WAITLIST_URL } from '../lib/defaults.js';
+import Logo from './Logo.jsx';
 
 const LINKS = [
   ['how', 'How it works'],
@@ -24,7 +26,7 @@ export default function Nav({ inAdmin, onHome }) {
   return (
     <header className="sticky top-0 z-20 border-b border-line bg-night/90 pt-[env(safe-area-inset-top)] backdrop-blur-md">
       <div className="wrap relative flex h-16 items-center justify-between">
-        <button
+        {/* <button
           aria-label="Prop1000 home"
           className="cursor-pointer font-serif text-[22px] font-bold tracking-tight"
           onClick={() => {
@@ -34,7 +36,14 @@ export default function Nav({ inAdmin, onHome }) {
           }}
         >
           PROP<span className="gold-text">1000</span>
-        </button>
+        </button> */}
+
+        <Logo className="cursor-pointer font-serif text-[22px] font-bold tracking-tight"
+          onClick={() => {
+            setOpen(false);
+            if (inAdmin) onHome();
+            else window.scrollTo(0, 0);
+          }}/>
 
         <button
           aria-label="Menu"
@@ -58,7 +67,7 @@ export default function Nav({ inAdmin, onHome }) {
               {label}
             </button>
           ))}
-          <button className="btn btn-sm mt-4 md:mt-0" onClick={() => go('waitlist')}>
+          <button className="btn btn-sm mt-4 md:mt-0" onClick={() => window.open(WAITLIST_URL, '_blank')}>
             Join the waitlist
           </button>
         </nav>

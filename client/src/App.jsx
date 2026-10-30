@@ -6,6 +6,7 @@ import Hero from './components/Hero.jsx';
 import Calculator from './components/Calculator.jsx';
 import JoinForm from './components/JoinForm.jsx';
 import { How, Pools, Market, Why, FAQ, Footer } from './components/Sections.jsx';
+import AppPreview from './components/AppPreview.jsx';
 import Login from './admin/Login.jsx';
 import Admin from './admin/Admin.jsx';
 
@@ -58,6 +59,7 @@ export default function App() {
           <Why />
           <FAQ c={cfg} />
           <JoinForm c={cfg} />
+          <AppPreview />
         </main>
       )}
       <Footer c={cfg} />

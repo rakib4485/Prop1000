@@ -1,4 +1,5 @@
 import { money, scrollToId } from "../lib/utils.js";
+import { WAITLIST_URL } from '../lib/defaults.js';
 
 function Skyline() {
   return (
@@ -56,7 +57,7 @@ export default function Hero({ c }) {
           <div className="flex flex-wrap gap-3.5">
             <button
               className="btn inline-flex items-center justify-center gap-2"
-              onClick={() => scrollToId("waitlist")}
+              onClick={() => window.open(WAITLIST_URL, '_blank')}
             >
               <span>Join the exclusive waitlist</span>
               <span aria-hidden="true">›</span>
@@ -71,7 +72,7 @@ export default function Hero({ c }) {
           <div className="mt-10 flex flex-wrap gap-7 border-t border-line pt-6 text-sm text-mute">
             {[
               [money(c.min), "minimum"],
-              ["2", "investment pools"],
+              //["2", "investment pools"],
               ["Global", "open worldwide"],
             ].map(([n, l]) => (
               <div key={l}>
@@ -91,13 +92,13 @@ export default function Hero({ c }) {
               <strong className="block font-serif text-[22px] text-gold2">
                 {c.poolA.target}%+
               </strong>
-              Pool A target
+              Pool A targeted
             </div>
             <div>
               <strong className="block font-serif text-[22px] text-gold2">
                 {c.poolB.yLow}–{c.poolB.yHigh}%
               </strong>
-              Pool B yearly target
+              Pool B yearly targeted
             </div>
           </div>
         </div>
