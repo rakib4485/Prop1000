@@ -120,7 +120,7 @@ function HomeTab({ app }) {
         </div>
         <div className="mt-3 flex flex-wrap items-center gap-x-1.5 text-[11px] font-medium text-slate-400">
           <ShieldCheck size={13} className="text-gold" />
-          <span>prop1000 is regulated by the <strong className="font-semibold text-slate-200">{APP.regulator}</strong></span>
+          <span>prop1000 will be regulated by the <strong className="font-semibold text-slate-200">{APP.regulator}</strong></span>
           <button onClick={() => setModal('dfsa')} className="ml-1 font-medium text-gold2 hover:underline">Learn more</button>
         </div>
       </div>

@@ -44,7 +44,7 @@ function Skyline() {
 
 export default function Hero({ c }) {
   return (
-    <section className="bg-[radial-gradient(circle_at_top_right,rgba(212,175,55,.16)_0%,rgba(11,13,18,.95)_70%),linear-gradient(180deg,#141822,#0b0d12)]">
+    <section className="bg-[radial-gradient(-mt-[calc(72px+env(safe-area-inset-top))] pt-[calc(72px+env(safe-area-inset-top))]">
       <div className="wrap grid items-center gap-12 py-12 md:grid-cols-[1.1fr_.9fr] md:py-20">
         <div>
           <h1 className="text-[clamp(34px,5.4vw,64px)] font-bold">

@@ -1,4 +1,4 @@
-export default function Logo({ className = '' }) {
+export default function Logo({ className = '', isRequiresText = true }) {
   return (
     <span className={`flex items-center space-x-2 ${className}`}>
       <span className="flex items-center rounded-md border border-slate-700/80 bg-black p-1 px-1.5 shadow-sm">
@@ -9,10 +9,11 @@ export default function Logo({ className = '' }) {
           ))}
         </span>
       </span>
+        {isRequiresText && (
       <span className="flex items-center text-xl font-extrabold tracking-tight">
         <span className="text-white">PROP</span>
         <span className="gold-text ml-0.5">1000</span>
-      </span>
+      </span>)}
     </span>
   );
 }

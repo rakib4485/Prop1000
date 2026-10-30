@@ -53,11 +53,7 @@ export default function JoinForm({ c }) {
               Join the exclusive waitlist
             </h2>
             <p className="mt-3.5 text-mute">
-              Be among the first to invest from {money(c.min)}. Questions? Email{" "}
-              <a className="underline" href={"mailto:" + c.email}>
-                {c.email}
-              </a>
-              .
+              Be among the first to invest from {money(c.min)}.
             </p>
             <div className="mt-5 flex flex-wrap gap-2.5 text-[13px]">
               <span className="rounded-md border border-mute px-3 py-1.5">
