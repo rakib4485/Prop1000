@@ -432,8 +432,8 @@ export default function AppPreview() {
 
   return (
     <section id="app" className="bg-night2 py-[60px] md:py-[88px]">
-      <div className="wrap grid items-center gap-12 md:grid-cols-[1fr_auto] md:gap-16">
-        <div className="max-w-[520px]">
+      <div className="wrap grid items-center gap-6 md:grid-cols-[1fr_auto] md:gap-6">
+        <div className="max-w-[620px]">
           <span className="mb-4 inline-block rounded-full border border-gold/30 bg-gold/10 px-3 py-1 text-xs font-bold text-gold2">The app</span>
           <h2 className="sec-title">Your property portfolio, in your pocket</h2>
           <p className="mt-3.5 text-[17px] text-mute">Browse properties, follow your wallet and rewards, and finish onboarding from one app. Tap around the preview to see how it works.</p>
