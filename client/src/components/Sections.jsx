@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { money, num, scrollToId } from '../lib/utils.js';
 
 const SECTION = 'py-[60px] md:py-[88px]';
@@ -35,11 +36,28 @@ export function How() {
   );
 }
 
-function PoolCard({ accent, title, big, bigLabel, rows, desc, ghost }) {
+function PoolImage({ src, alt, badge }) {
+  const [failed, setFailed] = useState(false);
+  useEffect(() => setFailed(false), [src]);
   return (
-    <article className={`rounded-[18px] border border-line border-t-4 bg-card p-6 sm:p-8 ${accent === 'gold' ? 'border-t-gold' : 'border-t-aqua'}`}>
+    <div className="relative -mx-6 -mt-6 mb-6 h-44 overflow-hidden bg-gradient-to-br from-card to-night sm:-mx-8 sm:-mt-8 sm:h-52">
+      {src && !failed && (
+        <img src={src} alt={alt} loading="lazy" referrerPolicy="no-referrer" onError={() => setFailed(true)} className="h-full w-full object-cover" />
+      )}
+      <div className="absolute inset-0 bg-gradient-to-t from-night2 via-night2/10 to-transparent" />
+      <span className="absolute left-3 top-3 rounded-full border border-gold/30 bg-night/80 px-2.5 py-1 text-[10px] font-bold text-gold2 backdrop-blur">
+        {badge}
+      </span>
+    </div>
+  );
+}
+
+function PoolCard({ accent, title, image, badge, big, bigLabel, rows, desc, ghost }) {
+  return (
+    <article className={`overflow-hidden rounded-[18px] border border-line border-t-4 bg-night2 p-6 transition hover:border-gold/40 sm:p-8 ${accent === 'gold' ? 'border-t-gold' : 'border-t-aqua'}`}>
+      <PoolImage src={image} alt={title} badge={badge} />
       <h3 className="text-[26px]">{title}</h3>
-      <div className={`mb-0.5 mt-4 font-serif text-[46px] font-bold ${accent === 'gold' ? 'text-gold2' : 'text-aqua2'}`}>{big}</div>
+      <div className={`mb-0.5 mt-4 text-[46px] font-extrabold ${accent === 'gold' ? 'gold-text' : 'text-aqua2'}`}>{big}</div>
       <p className="text-[15px] text-mute">{bigLabel}</p>
       <ul className="my-5 grid gap-2.5 text-[15px]">
         {rows.map(([k, v]) => (
@@ -62,11 +80,11 @@ export function Pools({ c }) {
         <Heading title="Two pools, two ways to grow your money" sub={`Choose the one that fits your timeline and income goals. Both start at ${money(c.min)}.`} />
         <div className="grid gap-6 md:grid-cols-2">
           <PoolCard
-            accent="gold" title={c.poolA.name} big={`${c.poolA.target}%+`} bigLabel="Target profit on exit" desc={c.poolA.desc}
+            accent="gold" title={c.poolA.name} image={c.poolA.image} badge={c.poolA.duration} big={`${c.poolA.target}%+`} bigLabel="Target profit on exit" desc={c.poolA.desc}
             rows={[['Duration', c.poolA.duration], ['Return type', 'Profit on exit'], ['Minimum', money(c.min)]]}
           />
           <PoolCard
-            ghost accent="aqua" title={c.poolB.name} big={`${c.poolB.yLow}–${c.poolB.yHigh}%`} bigLabel="Target annual rental yield" desc={c.poolB.desc}
+            ghost accent="aqua" title={c.poolB.name} image={c.poolB.image} badge={c.poolB.duration} big={`${c.poolB.yLow}–${c.poolB.yHigh}%`} bigLabel="Target annual rental yield" desc={c.poolB.desc}
             rows={[['Duration', c.poolB.duration], ['Return type', 'Annual rental yield'], ['Minimum', money(c.min)]]}
           />
         </div>
@@ -168,9 +186,9 @@ export function FAQ({ c }) {
 
 export function Footer({ c }) {
   return (
-    <footer className="border-t border-line bg-[#0f0618] py-10 text-[13px] text-mute">
+    <footer className="border-t border-line bg-[#06080b] py-10 text-[13px] text-mute">
       <div className="wrap grid gap-3">
-        <div className="font-serif text-[22px] font-bold text-cream">PROP<span className="text-gold">1000</span></div>
+        <div className="font-serif text-[22px] font-bold text-cream">PROP<span className="gold-text">1000</span></div>
         <div>
           <strong className="text-cream">Risk warning.</strong> Returns are targets, not guarantees. Your capital is at risk and property
           values and rental income can go down as well as up. Yield figures are gross and for illustration. This page is not financial advice.

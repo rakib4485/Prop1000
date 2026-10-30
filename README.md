@@ -37,6 +37,23 @@ Colours and fonts are Tailwind theme values in `client/src/index.css`
 as `bg-gold` or `text-mute`. Shared pieces (`.btn`, `.field`, `.panel`) are
 defined in the same file.
 
+## Deploy on Vercel (two projects)
+1. **Backend** (`server/` folder, already deployed at https://server-lime-two-35.vercel.app).
+   Redeploy it with this version of `server/index.js` and `server/vercel.json`.
+   In its Vercel settings add the variables `MONGODB_URI`, `JWT_SECRET`, `NODE_ENV=production`.
+   In MongoDB Atlas > Network Access allow `0.0.0.0/0` (Vercel IPs change), with a strong DB password.
+2. **Frontend** (`client/` folder): in `client/vercel.json` the `destination` of the `/api` rewrite
+   must be your backend URL. If your backend URL changes, change it there and redeploy the frontend.
+   Build command `npm run build`, output directory `dist`.
+3. Test: `<backend>/api/config` returns JSON, then sign in at `<frontend>/#/admin`.
+
+Because the frontend forwards `/api` to the backend, the browser sees a single domain, so
+`client/src/lib/api.js` and the cookies need no changes.
+
+## Pool images
+Admin > Content > Pool A / Pool B > Image URL. Use any https link, or put files in
+`client/public/images/` and enter `/images/pool-a.jpg`.
+
 ## Deploy (one server)
 ```bash
 npm run build                          # builds client/dist

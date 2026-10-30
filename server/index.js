@@ -28,7 +28,7 @@ app.use(
         defaultSrc: ["'self'"],
         styleSrc: ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
         fontSrc: ["'self'", 'https://fonts.gstatic.com'],
-        imgSrc: ["'self'", 'data:'],
+        imgSrc: ["'self'", 'data:', 'https:'],
         connectSrc: ["'self'"],
       },
     },
@@ -36,6 +36,23 @@ app.use(
 );
 app.use(express.json({ limit: '100kb' }));
 app.use(cookieParser());
+
+// Connect lazily and reuse the connection (works locally and on Vercel serverless).
+let dbPromise;
+const connectDb = () =>
+  (dbPromise ??= mongoose.connect(MONGODB_URI).catch((e) => {
+    dbPromise = undefined;
+    throw e;
+  }));
+app.use('/api', async (req, res, next) => {
+  try {
+    await connectDb();
+    next();
+  } catch (e) {
+    console.error(e.message);
+    res.status(500).json({ error: 'Database unavailable' });
+  }
+});
 
 /* ---------- helpers ---------- */
 const isEmail = (s) => typeof s === 'string' && /^\S+@\S+\.\S+$/.test(s);
@@ -137,21 +154,25 @@ app.delete('/api/leads/:id', requireAdmin, wrap(async (req, res) => {
 
 app.use('/api', (req, res) => res.status(404).json({ error: 'Not found' }));
 
-/* ---------- serve the built React app in production ---------- */
+/* ---------- serve the built React app when it sits next to the server ---------- */
 const dist = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../client/dist');
 if (fs.existsSync(dist)) {
   app.use(express.static(dist));
   app.get('*', (req, res) => res.sendFile(path.join(dist, 'index.html')));
+} else {
+  app.get('/', (req, res) => res.json({ message: 'Welcome to the API' }));
 }
 
-app.get('/', (req, res) => {
-  res.status(200).json({ message: 'Welcome to the API' });
-});
+export default app; // Vercel uses this export
 
-app.get('/*', (req, res) => {
-  res.status(404).json({ error: 'Not found' });
-});
-
-await mongoose.connect(MONGODB_URI);
-console.log('MongoDB connected');
-app.listen(PORT, () => console.log(`Server on http://localhost:${PORT}`));
+if (!process.env.VERCEL) {
+  connectDb()
+    .then(() => {
+      console.log('MongoDB connected');
+      app.listen(PORT, () => console.log(`Server on http://localhost:${PORT}`));
+    })
+    .catch((e) => {
+      console.error('MongoDB connection failed:', e.message);
+      process.exit(1);
+    });
+}

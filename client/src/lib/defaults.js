@@ -13,6 +13,7 @@ export const DEFAULTS = {
     name: 'Pool A: Distressed deals',
     duration: '18 months',
     target: 15,
+    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1000&q=80',
     desc: 'Properties bought below market value, improved where needed, then sold. Best if you want a defined timeline.',
   },
   poolB: {
@@ -20,6 +21,7 @@ export const DEFAULTS = {
     duration: '3–5 years',
     yLow: 7,
     yHigh: 10,
+    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80',
     desc: 'Short-stay holiday homes in popular Dubai areas, earning rental income. Best if you want recurring returns.',
   },
   cities: [

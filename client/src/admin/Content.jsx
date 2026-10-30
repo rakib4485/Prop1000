@@ -32,6 +32,7 @@ export default function Content({ d, upd, onSave }) {
           <Fld l="Name"><input {...text(['poolA', 'name'])} /></Fld>
           <Fld l="Duration"><input {...text(['poolA', 'duration'])} /></Fld>
         </Two>
+        <Fld l="Image URL (https://… or /images/pool-a.jpg)"><input {...text(['poolA', 'image'])} placeholder="https://" /></Fld>
         <Fld l="Target profit on exit (%)"><input {...number(['poolA', 'target'])} /></Fld>
         <Fld l="Description"><textarea {...area(['poolA', 'desc'])} /></Fld>
       </Panel>
@@ -45,6 +46,7 @@ export default function Content({ d, upd, onSave }) {
           <Fld l="Yield low (%)"><input {...number(['poolB', 'yLow'])} /></Fld>
           <Fld l="Yield high (%)"><input {...number(['poolB', 'yHigh'])} /></Fld>
         </Two>
+        <Fld l="Image URL (https://… or /images/pool-b.jpg)"><input {...text(['poolB', 'image'])} placeholder="https://" /></Fld>
         <Fld l="Description"><textarea {...area(['poolB', 'desc'])} /></Fld>
       </Panel>
 

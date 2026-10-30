@@ -1,20 +1,21 @@
 @import "tailwindcss";
 
+/* Theme matched to the Prop1000 app: near-black navy surfaces, gold accents, amber highlight cards. */
 @theme {
-  --color-night: #150a22;
-  --color-night2: #1e0f31;
-  --color-card: #2a1644;
-  --color-line: #43285f;
-  --color-ink: #1a0d2b;
-  --color-cream: #f4ecff;
-  --color-mute: #b9a6d3;
-  --color-gold: #e6b34a;
-  --color-gold2: #f6d58a;
-  --color-aqua: #1b8f8a;
-  --color-aqua2: #5fd6cf;
+  --color-night: #0b0d12;     /* page background */
+  --color-night2: #141822;    /* cards */
+  --color-card: #1a2130;      /* raised surface */
+  --color-line: #222a3a;      /* borders */
+  --color-ink: #06080b;       /* text on gold buttons */
+  --color-cream: #f3f4f6;
+  --color-mute: #94a3b8;
+  --color-gold: #d4af37;
+  --color-gold2: #e6c665;
+  --color-aqua: #e08a2e;      /* Pool B accent: amber */
+  --color-aqua2: #f2b56b;
   --color-bad: #ff8f80;
-  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
-  --font-serif: "Fraunces", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-serif: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
   --animate-grow: grow 1.1s ease-out both;
   @keyframes grow {
     from { transform: scaleX(0); }
@@ -26,21 +27,35 @@
   body {
     @apply bg-night text-cream font-sans antialiased overflow-x-hidden;
     padding-bottom: env(safe-area-inset-bottom, 0px);
+    -webkit-tap-highlight-color: transparent;
   }
-  h1, h2, h3 { @apply font-serif leading-[1.12]; }
+  h1, h2, h3 { @apply font-sans font-extrabold leading-[1.12] tracking-tight; }
   :focus-visible { outline: 2px solid var(--color-gold2); outline-offset: 3px; }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--color-night); }
+  ::-webkit-scrollbar-thumb { background: var(--color-line); border-radius: 4px; }
 }
 
 @layer components {
   .wrap { @apply mx-auto w-full max-w-[1120px] px-[18px] sm:px-6; }
+  .gold-text {
+    background: linear-gradient(135deg, #fff0b8 0%, #d4af37 50%, #9a7b1c 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
   .btn {
-    @apply inline-block cursor-pointer rounded-lg bg-gold px-6 py-3 text-center text-[15px] font-semibold text-ink
-      transition hover:-translate-y-0.5 hover:bg-gold2 disabled:cursor-wait disabled:opacity-60 motion-reduce:transition-none;
+    @apply inline-block cursor-pointer rounded-xl bg-[linear-gradient(135deg,#e8c86a_0%,#d4af37_60%,#b58f24_100%)] px-6 py-3
+      text-center text-[15px] font-extrabold text-ink shadow-md transition hover:-translate-y-0.5 hover:brightness-110
+      active:scale-[.99] disabled:cursor-wait disabled:opacity-60 motion-reduce:transition-none;
   }
   .btn-sm { @apply px-4 py-2 text-sm; }
-  .btn-ghost { @apply border border-line bg-transparent text-cream hover:bg-card; }
-  .btn-danger { @apply border border-bad bg-transparent text-bad hover:bg-transparent; }
-  .field { @apply w-full rounded-lg border border-line bg-night px-3.5 py-3 text-[15px] text-cream; }
+  .btn-ghost { @apply border border-line bg-none bg-card font-bold text-cream shadow-none hover:bg-line hover:brightness-100; }
+  .btn-amber { @apply flex w-full items-center justify-between border border-amber-500/40 bg-none bg-amber-500/20 font-semibold text-amber-200 shadow-none hover:bg-amber-500/30 hover:text-white hover:brightness-100; }
+  .btn-danger { @apply border border-bad bg-none bg-transparent font-bold text-bad shadow-none hover:brightness-100; }
+  .field { @apply w-full rounded-xl border border-line bg-card px-3.5 py-3 text-[15px] text-cream placeholder:text-slate-500 focus:border-gold focus:outline-none; }
   .panel { @apply mb-5 rounded-2xl border border-line bg-night2 p-5 sm:p-6; }
+  .amber-card { @apply border border-[rgba(234,88,12,.3)] bg-[linear-gradient(135deg,rgba(154,71,12,.35)_0%,rgba(70,28,4,.5)_100%)]; }
   .sec-title { @apply text-[clamp(28px,3.8vw,44px)]; }
 }

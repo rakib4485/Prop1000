@@ -33,7 +33,7 @@ export default function Nav({ inAdmin, onHome }) {
             else window.scrollTo(0, 0);
           }}
         >
-          PROP<span className="text-gold">1000</span>
+          PROP<span className="gold-text">1000</span>
         </button>
 
         <button
