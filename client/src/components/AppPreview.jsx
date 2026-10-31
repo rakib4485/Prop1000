@@ -424,16 +424,17 @@ export default function AppPreview() {
   const app = { hidden, setHidden, verified, setTab, openVerify, setModal, say };
 
   const features = [
-    [Home, 'Account overview', 'See your account value and onboarding progress at a glance.'],
-    [TrendingUp, 'Browse properties', `Explore investment opportunities from ${APP.minimum}.`],
-    [Wallet, 'Wallet and portfolio', 'Track your balance, activity and holdings in one place.'],
-    [Award, 'Rewards', 'Invite friends and follow your rewards balance.'],
-  ];
+  [Home, 'Account overview', 'See your account value and onboarding progress at a glance.'],
+  [TrendingUp, 'Browse properties', `Explore investment opportunities from ${APP.minimum}.`],
+  [Wallet, 'Wallet', 'Check your balance and recent activity, and deposit funds once your account is verified.'],
+  [PieChart, 'Portfolio', 'Track your real estate holdings and yields as you invest.'],
+  [Award, 'Rewards', 'Invite friends and follow your rewards balance.'],
+];
 
   return (
     <section id="app" className="bg-night2 py-[60px] md:py-[88px]">
       <div className="wrap grid items-center gap-6 md:grid-cols-[1fr_auto] md:gap-6">
-        <div className="max-w-[620px]">
+        <div className="max-w-[1000px]">
           <span className="mb-4 inline-block rounded-full border border-gold/30 bg-gold/10 px-3 py-1 text-xs font-bold text-gold2">The app</span>
           <h2 className="sec-title">Your property portfolio, in your pocket</h2>
           <p className="mt-3.5 text-[17px] text-mute">Browse properties, follow your wallet and rewards, and finish onboarding from one app. Tap around the preview to see how it works.</p>

@@ -166,7 +166,7 @@ export function Pools({ c }) {
           />
         </div>
         <p className="mt-3.5 text-[12.5px] text-mute">
-          Returns are targets, not guarantees. Your capital is at risk.
+          Returns are targets, not guarantees.
         </p>
       </div>
     </section>
@@ -279,7 +279,7 @@ export function FAQ({ c }) {
     <section id="faq" className={`${SECTION} bg-night2`}>
       <div className="wrap">
         <Heading title="Common questions" />
-        <div className="max-w-[760px]">
+        <div className="max-w-full">
           {c.faqs.map((f, i) => (
             <details key={i} className="group border-b border-line py-[18px]">
               <summary className="flex cursor-pointer list-none justify-between gap-4 text-[17px] font-semibold [&::-webkit-details-marker]:hidden">
@@ -312,7 +312,18 @@ export function Footer({ c }) {
   return (
     <footer className="border-t border-line bg-[#06080b] py-10 text-[13px] text-mute">
       <div className="wrap grid gap-3">
-        <Logo isRequiresText={false} />
+        <div className="flex items-center gap-3">
+          <Logo isRequiresText={false} />
+        <a
+            href={`mailto:${c.email}?subject=${encodeURIComponent("Prop1000 enquiry")}`}
+            onClick={openMail}
+            aria-label="Email Prop1000"
+            title="Email us"
+            className="md:hidden grid size-11 place-items-center rounded-full border border-gold/40 bg-gold/10 text-gold2 shadow-[0_0_18px_rgba(212,175,55,.25)] transition hover:-translate-y-0.5 hover:bg-gold hover:text-ink hover:shadow-[0_0_26px_rgba(212,175,55,.5)] motion-reduce:transition-none"
+          >
+            <Mail size={20} />
+          </a>
+        </div>
         <div>
           <strong className="text-cream">Risk warning.</strong> Returns are
           targets, not guarantees.Property values and rental income can go down
@@ -328,7 +339,7 @@ export function Footer({ c }) {
             onClick={openMail}
             aria-label="Email Prop1000"
             title="Email us"
-            className="grid size-11 place-items-center rounded-full border border-gold/40 bg-gold/10 text-gold2 shadow-[0_0_18px_rgba(212,175,55,.25)] transition hover:-translate-y-0.5 hover:bg-gold hover:text-ink hover:shadow-[0_0_26px_rgba(212,175,55,.5)] motion-reduce:transition-none"
+            className="hidden md:grid size-11 place-items-center rounded-full border border-gold/40 bg-gold/10 text-gold2 shadow-[0_0_18px_rgba(212,175,55,.25)] transition hover:-translate-y-0.5 hover:bg-gold hover:text-ink hover:shadow-[0_0_26px_rgba(212,175,55,.5)] motion-reduce:transition-none"
           >
             <Mail size={20} />
           </a>
